@@ -1,4 +1,4 @@
-## Negocio-Cristian_Alexander-Quispe_Espinal
+# PROYECTO MODIFICADO EN LA RAMA A
 PRACTICA 1 | PROGRAMACION WEB III 
 Aux. Enrique Rafael Fernandez Chiri 
 Paralelo B 
@@ -9,5 +9,3 @@ Lic. Marcelo Aruquipa
 **Nombres:** Cristian Alexander
 **C.I.:** 12832255
 **Fecha:** 18/10/26
-
-Esta es la línea de conflicto: versión B

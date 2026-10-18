@@ -9,3 +9,5 @@ Lic. Marcelo Aruquipa
 **Nombres:** Cristian Alexander
 **C.I.:** 12832255
 **Fecha:** 18/10/26
+
+Esta es la línea de conflicto: versión A

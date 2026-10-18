@@ -4,7 +4,6 @@ const resultado = document.getElementById('resultado');
 const cargando = document.getElementById('cargando');
 const errorDiv = document.getElementById('error');
 
-// Permitir buscar con la tecla "Enter"
 input.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') buscarPokemon();
 });
@@ -19,32 +18,26 @@ async function buscarPokemon() {
     return;
   }
 
-  // Limpiar pantalla y mostrar cargando
   resultado.innerHTML = '';
   errorDiv.style.display = 'none';
   cargando.style.display = 'block';
 
   try {
-    // Petición a la API
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombre}`);
     
-    // Validar si el Pokémon existe (response.ok es false si es 404)
     if (!response.ok) {
       throw new Error('Pokémon no encontrado. Revisa el nombre.');
     }
     
     const data = await response.json();
 
-    // Convertir unidades
     const pesoKg = (data.weight / 10).toFixed(1); // Hectogramos a kg
     const alturaM = (data.height / 10).toFixed(1); // Decímetros a metros
 
-    // Generar HTML de los tipos (con sus colores)
     const tiposHTML = data.types.map(t => 
       `<span class="tipo ${t.type.name}">${t.type.name}</span>`
     ).join('');
 
-    // Insertar la tarjeta del Pokémon en el HTML
     resultado.innerHTML = `
       <div class="card">
         <h2>${data.name}</h2>
@@ -70,7 +63,6 @@ async function buscarPokemon() {
   } catch (error) {
     mostrarError(error.message);
   } finally {
-    // Pase lo que pase, ocultar el "Cargando..."
     cargando.style.display = 'none';
   }
 }

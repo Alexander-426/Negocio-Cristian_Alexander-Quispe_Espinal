@@ -10,4 +10,4 @@ Lic. Marcelo Aruquipa
 **C.I.:** 12832255
 **Fecha:** 18/10/26
 
-Esta es la línea de conflicto: versión A
+Esta es la línea de conflicto: versión B

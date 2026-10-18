@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex - Práctica Web III</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f4f4f9;
+      --card-bg: #ffffff;
+      --primary: #ef5350;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+      background-size: 20px 20px;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.8rem;
+      color: #333;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .search-container {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0 40px 0;
+      background: white;
+      padding: 10px;
+      border-radius: 50px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    input {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 50px;
+      outline: none;
+      font-size: 1rem;
+      width: 200px;
+    }
+
+    button {
+      padding: 10px 25px;
+      border: none;
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    button:hover { background-color: #d32f2f; }
+    button:active { transform: scale(0.95); }
+
+    #cargando {
+      color: #555;
+      font-weight: bold;
+      font-size: 1.2rem;
+      display: none;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    #error {
+      color: white;
+      background-color: #e53935;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      display: none;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card h2 {
+      text-transform: uppercase;
+      margin: 0 0 10px 0;
+      color: #333;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+
+    .card img {
+      width: 150px;
+      height: 150px;
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+    }
+
+    .tipos {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .tipo {
+      padding: 5px 15px;
+      border-radius: 20px;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .normal { background-color: #A8A77A; }
+    .fire { background-color: #EE8130; }
+    .water { background-color: #6390F0; }
+    .electric { background-color: #F7D02C; }
+    .grass { background-color: #7AC74C; }
+    .ice { background-color: #96D9D6; }
+    .fighting { background-color: #C22E28; }
+    .poison { background-color: #A33EA1; }
+    .ground { background-color: #E2BF65; }
+    .flying { background-color: #A98FF3; }
+    .psychic { background-color: #F95587; }
+    .bug { background-color: #A6B91A; }
+    .rock { background-color: #B6A136; }
+    .ghost { background-color: #735797; }
+    .dragon { background-color: #6F35FC; }
+    .dark { background-color: #705746; }
+    .steel { background-color: #B7B7CE; }
+    .fairy { background-color: #D685AD; }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      margin-top: 15px;
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 15px;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat span:first-child {
+      font-size: 0.8rem;
+      color: #777;
+      text-transform: uppercase;
+    }
+
+    .stat span:last-child {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Buscador Pokémon</h1>
+  
+  <div class="search-container">
+    <input type="text" id="nombre" placeholder="Ej: pikachu, charizard...">
+    <button id="buscar">Buscar</button>
+  </div>
+
+  <p id="cargando">Cargando...</p>
+  <p id="error"></p>
+
+  <div id="resultado"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# PROYECTO MODIFICADO EN LA RAMA B
+## Conlicto resuelto
 PRACTICA 1 | PROGRAMACION WEB III 
 Aux. Enrique Rafael Fernandez Chiri 
 Paralelo B 

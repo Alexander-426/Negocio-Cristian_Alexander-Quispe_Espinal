@@ -8,4 +8,4 @@ Lic. Marcelo Aruquipa
 **Apellidos:** Quispe Espinal
 **Nombres:** Cristian Alexander
 **C.I.:** 12832255
-**Fecha:** 16/10/26
+**Fecha:** 18/10/26
